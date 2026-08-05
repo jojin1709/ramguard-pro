@@ -18,6 +18,22 @@ use commands::SysState;
 use settings::SettingsState;
 
 fn main() {
+    #[cfg(windows)]
+    {
+        use windows_sys::Win32::Foundation::{GetLastError, ERROR_ALREADY_EXISTS};
+        use windows_sys::Win32::System::Threading::CreateMutexW;
+        use std::ptr::null_mut;
+
+        unsafe {
+            let name: Vec<u16> = "Global\\RAMGuardProSingleInstanceMutex\0".encode_utf16().collect();
+            let handle = CreateMutexW(null_mut(), 1, name.as_ptr());
+            if handle == 0 as _ || GetLastError() == ERROR_ALREADY_EXISTS {
+                // Another instance is already running in tray
+                std::process::exit(0);
+            }
+        }
+    }
+
     tauri::Builder::default()
         .plugin(tauri_plugin_autostart::init(
             tauri_plugin_autostart::MacosLauncher::LaunchAgent,
@@ -35,7 +51,7 @@ fn main() {
             let quit_item = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
             let tray_menu = Menu::with_items(app, &[&show_item, &optimize_item, &quit_item])?;
 
-            TrayIconBuilder::new()
+            TrayIconBuilder::with_id("main-tray")
                 .icon(app.default_window_icon().unwrap().clone())
                 .menu(&tray_menu)
                 .tooltip("RAMGuard Pro")
