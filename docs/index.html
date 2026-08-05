@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAMGuard Pro | High-Performance Windows RAM Optimizer by JOJIN JOHN</title>
+  <meta name="description" content="Proprietary Windows RAM Optimizer engineered with kernel-level NT APIs. Real memory reclamation by JOJIN JOHN.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient glowing background grid -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon"></div>
+        <div>
+          <span class="brand-name">RAMGuard <span class="brand-pro">Pro</span></span>
+          <span class="brand-author">by JOJIN JOHN</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#tech">How It Works</a>
+        <a href="#protection">Safety Shields</a>
+        <a href="#download" class="btn btn-sm btn-glow">Download .exe</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge badge-hero animate-fade-in">
+          <span class="badge-dot"></span>
+          OFFICIAL RELEASE v0.1.0 · PROPRIETARY SOFTWARE
+        </div>
+        <h1 class="hero-title animate-slide-up">
+          Real Windows Memory Optimization. <br>
+          <span class="gradient-text">Zero Placebos.</span>
+        </h1>
+        <p class="hero-subtitle animate-slide-up delay-1">
+          RAMGuard Pro utilizes kernel-level Windows NT APIs (<code class="code-tag">NtSetSystemInformation</code> &amp; <code class="code-tag">EmptyWorkingSet</code>) to safely purge standby cache and trim application working sets in real-time.
+        </p>
+
+        <div class="hero-actions animate-slide-up delay-2">
+          <a href="../releases/RAMGuard-Pro-Setup.exe" class="btn btn-primary btn-lg btn-download">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            <div>
+              <span class="btn-main-text">Download Setup Installer (.exe)</span>
+              <span class="btn-sub-text">Installer with Desktop Shortcut · Windows 10/11</span>
+            </div>
+          </a>
+          <a href="../releases/RAMGuard-Pro.exe" class="btn btn-secondary btn-lg">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+              <polyline points="13 2 13 9 20 9"/>
+            </svg>
+            <div>
+              <span class="btn-main-text">Download Portable Executable</span>
+              <span class="btn-sub-text">Single-file .exe · No installation needed</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="hero-meta animate-slide-up delay-3">
+          <span>🛡️ Developed &amp; Licensed by <strong>JOJIN JOHN</strong></span>
+          <span class="meta-divider">•</span>
+          <span>⚡ Requires Windows Administrator UAC</span>
+          <span class="meta-divider">•</span>
+          <span>🔒 All Rights Reserved</span>
+        </div>
+      </div>
+
+      <!-- Animated Interactive Gauge Mockup -->
+      <div class="hero-visual animate-fade-in delay-2">
+        <div class="glass-card mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="mockup-title">RAMGuard Pro Dashboard</div>
+            <div class="mockup-admin">🛡️ Administrator Mode</div>
+          </div>
+          <div class="mockup-body">
+            <div class="gauge-wrapper">
+              <svg class="gauge-svg" viewBox="0 0 260 260">
+                <circle class="gauge-track" cx="130" cy="130" r="100"></circle>
+                <circle class="gauge-value" cx="130" cy="130" r="100" id="gaugeCircle"></circle>
+              </svg>
+              <div class="gauge-info">
+                <span class="gauge-percent" id="gaugePercentText">78%</span>
+                <span class="gauge-label">RAM IN USE</span>
+                <span class="gauge-sub" id="gaugeSubText">12.5 / 16.0 GB</span>
+              </div>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-box">
+                <span class="stat-lbl">In Use</span>
+                <span class="stat-val" id="valInUse">12.5 GB</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-lbl">Available</span>
+                <span class="stat-val" id="valAvail">3.5 GB</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-lbl">Total</span>
+                <span class="stat-val">16.0 GB</span>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block btn-demo-optimize" id="btnDemoOptimize">
+              ⚡ Optimize Now (Demo)
+            </button>
+            <div class="result-banner hidden" id="demoResult">
+              ✓ Trimmed 18 processes · Standby list purged · Freed ~2,480 MB
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge">CORE CAPABILITIES</span>
+        <h2 class="section-title">Engineered for Maximum Memory Performance</h2>
+        <p class="section-subtitle">Real memory optimization mechanisms designed for gaming, content creation, and heavy multitasking.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-gold">🧹</div>
+          <h3 class="feature-title">Working-Set Trimming</h3>
+          <p class="feature-desc">Calls PSAPI <code class="code-tag">EmptyWorkingSet</code> to force idle background applications to return unallocated RAM back to the operating system.</p>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-cyan">⚡</div>
+          <h3 class="feature-title">Standby Memory Purging</h3>
+          <p class="feature-desc">Leverages kernel NT API <code class="code-tag">NtSetSystemInformation</code> to purge standby list cached file RAM that Windows hoards as unavailable.</p>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-gold">🛡️</div>
+          <h3 class="feature-title">Smart Admin Mode Detector</h3>
+          <p class="feature-desc">Auto-detects token elevation status and displays live indicator badges (**🛡️ Administrator Mode** vs **⚠️ User Mode**).</p>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-cyan">🔍</div>
+          <h3 class="feature-title">Process Search &amp; Filters</h3>
+          <p class="feature-desc">Live search processes by name or PID with one-click filtering for Suggested Cleanup, System Protected, and Caution items.</p>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-gold">🤖</div>
+          <h3 class="feature-title">Background Auto-Watcher</h3>
+          <p class="feature-desc">Monitors RAM load silently in the background and automatically triggers optimization whenever memory load crosses custom thresholds.</p>
+        </div>
+
+        <div class="glass-card feature-card">
+          <div class="feature-icon feature-icon-cyan">📌</div>
+          <h3 class="feature-title">System Tray Controls</h3>
+          <p class="feature-desc">Minimizes to system tray. Single or double-clicking the tray icon brings up the window instantly; right-clicking gives instant optimize options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical API Section -->
+  <section class="section bg-panel" id="tech">
+    <div class="container">
+      <div class="grid grid-2 items-center">
+        <div>
+          <span class="section-badge">DEEP DIVE</span>
+          <h2 class="section-title">How RAMGuard Pro Works Under the Hood</h2>
+          <p class="section-subtitle">Most memory cleaners lie to you by creating fake memory allocation spikes. RAMGuard Pro uses standard Microsoft Windows kernel API calls:</p>
+
+          <div class="tech-steps">
+            <div class="tech-step">
+              <div class="step-num">1</div>
+              <div>
+                <h4>Process Working-Set Eviction</h4>
+                <p>Iterates through active non-protected processes and invokes <code class="code-tag">EmptyWorkingSet(handle)</code> to flush unused page tables into virtual memory swap.</p>
+              </div>
+            </div>
+            <div class="tech-step">
+              <div class="step-num">2</div>
+              <div>
+                <h4>System Memory Purge (NT Native API)</h4>
+                <p>Requests <code class="code-tag">SeProfileSingleProcessPrivilege</code> and executes <code class="code-tag">NtSetSystemInformation(SystemMemoryListInformation, 4)</code> to clear the standby cache list.</p>
+              </div>
+            </div>
+            <div class="tech-step">
+              <div class="step-num">3</div>
+              <div>
+                <h4>Hardware &amp; System Shield Protection</h4>
+                <p>Guarantees core kernel processes like <code class="code-tag">csrss.exe</code>, <code class="code-tag">lsass.exe</code>, <code class="code-tag">dwm.exe</code>, and <code class="code-tag">explorer.exe</code> are immune to kill or trim operations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card code-box">
+          <div class="code-header">
+            <span class="code-lang">Rust Kernel Engine — memory.rs</span>
+            <button class="btn-copy-code" id="btnCopyCode">Copy API snippet</button>
+          </div>
+          <pre><code class="code-body">// Rust Kernel API for Standby Memory List Purge
+#[link(name = "ntdll")]
+extern "system" {
+    fn NtSetSystemInformation(
+        info_class: i32,
+        info: *mut c_void,
+        length: u32,
+    ) -> i32;
+}
+
+pub fn clear_standby_list() -> bool {
+    enable_privilege("SeProfileSingleProcessPrivilege");
+    enable_privilege("SeIncreaseQuotaPrivilege");
+    unsafe {
+        let mut command = 4u32; // MemoryPurgeStandbyList
+        let status = NtSetSystemInformation(80, &mut command as *mut _ as _, 4);
+        status == 0 // STATUS_SUCCESS
+    }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Protection Shields -->
+  <section class="section" id="protection">
+    <div class="container">
+      <div class="glass-card protection-banner">
+        <div class="protection-header">
+          <div class="shield-badge">🛡️ IMMUTABLE SYSTEM PROTECTION SHIELD</div>
+          <h2>Built to Prevent System Crashes &amp; BSODs</h2>
+          <p>RAMGuard Pro includes hard-coded protection lists. The following essential Windows operating system processes can NEVER be terminated or trimmed by this tool, regardless of input:</p>
+        </div>
+        <div class="proc-pills">
+          <span class="proc-pill">csrss.exe</span>
+          <span class="proc-pill">lsass.exe</span>
+          <span class="proc-pill">wininit.exe</span>
+          <span class="proc-pill">winlogon.exe</span>
+          <span class="proc-pill">services.exe</span>
+          <span class="proc-pill">explorer.exe</span>
+          <span class="proc-pill">dwm.exe</span>
+          <span class="proc-pill">svchost.exe</span>
+          <span class="proc-pill">smss.exe</span>
+          <span class="proc-pill">ctfmon.exe</span>
+          <span class="proc-pill">conhost.exe</span>
+          <span class="proc-pill">ramguard-pro.exe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section class="section section-download text-center" id="download">
+    <div class="container">
+      <span class="section-badge">READY TO RUN</span>
+      <h2 class="section-title">Download RAMGuard Pro</h2>
+      <p class="section-subtitle">Developed &amp; Proprietary Licensed Software by <strong>JOJIN JOHN</strong>.</p>
+
+      <div class="download-cards-wrapper">
+        <div class="glass-card download-card download-card-primary">
+          <div class="download-badge">RECOMMENDED FOR MOST USERS</div>
+          <div class="download-icon">💿</div>
+          <h3>NSIS Setup Installer</h3>
+          <p>Guided setup installer with desktop shortcut and start menu options.</p>
+          <div class="file-info">File: <code class="code-tag">RAMGuard-Pro-Setup.exe</code></div>
+          <a href="../releases/RAMGuard-Pro-Setup.exe" class="btn btn-primary btn-block btn-lg">
+            Download Setup Installer (.exe)
+          </a>
+        </div>
+
+        <div class="glass-card download-card">
+          <div class="download-badge">PORTABLE / STANDALONE</div>
+          <div class="download-icon">⚡</div>
+          <h3>Standalone Executable</h3>
+          <p>Single-file portable executable. No installation required — run anywhere.</p>
+          <div class="file-info">File: <code class="code-tag">RAMGuard-Pro.exe</code></div>
+          <a href="../releases/RAMGuard-Pro.exe" class="btn btn-secondary btn-block btn-lg">
+            Download Portable Executable
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="brand-icon"></div>
+        <div>
+          <div class="brand-name">RAMGuard Pro</div>
+          <div class="copyright">Developed by <strong>JOJIN JOHN</strong></div>
+        </div>
+      </div>
+
+      <div class="footer-license">
+        <p><strong>PROPRIETARY SOFTWARE LICENSE AGREEMENT</strong></p>
+        <p>Copyright © 2026 <strong>JOJIN JOHN</strong>. All Rights Reserved. <br> Unauthorized copying, redistribution, decompilation, or modification of RAMGuard Pro is strictly prohibited.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
