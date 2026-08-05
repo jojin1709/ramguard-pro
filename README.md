@@ -13,6 +13,7 @@
 [![Engine: Rust](https://img.shields.io/badge/Engine-Rust_Kernel_API-DE3A1E?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
 [![Framework: Tauri v2 + React](https://img.shields.io/badge/Framework-Tauri_v2_%2B_React_18-61DAFB?style=for-the-badge&logo=react)](https://tauri.app/)
 [![Website: Live Website](https://img.shields.io/badge/Website-jojin1709.github.io%2Framguard--pro-3fa9a0?style=for-the-badge&logo=googlechrome)](https://jojin1709.github.io/ramguard-pro/)
+[![Code of Conduct](https://img.shields.io/badge/Contributor_Covenant-2.1-purple?style=for-the-badge)](CODE_OF_CONDUCT.md)
 [![License: Proprietary](https://img.shields.io/badge/License-Proprietary_All_Rights_Reserved-red?style=for-the-badge)](LICENSE)
 
 RAMGuard Pro is a high-performance Windows desktop application engineered to safely reclaim RAM, optimize process working sets, and purge cached system standby memory using kernel-level NT APIs.
