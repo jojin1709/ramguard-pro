@@ -1,5 +1,5 @@
 > [!NOTE]
-> **[RAMGuard Pro v0.1.0 is officially released](releases/RAMGuard-Pro-Setup.exe)** — High-Performance Real Windows Memory Optimization Engine by **JOJIN JOHN**.
+> **[RAMGuard Pro v0.1.0 is officially released](https://github.com/jojin1709/ramguard-pro/releases/tag/v0.1.0)** — High-Performance Real Windows Memory Optimization Engine by **JOJIN JOHN**.
 
 <div align="center">
 
@@ -8,26 +8,26 @@
 ### Proprietary Windows Memory Optimizer Engine
 **Developed by JOJIN JOHN**
 
+[![Developer: JOJIN JOHN](https://img.shields.io/badge/Developer-JOJIN_JOHN-gold?style=for-the-badge)](https://github.com/jojin1709)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows_10%2F11-0078D6?style=for-the-badge&logo=windows)](https://microsoft.com/windows)
 [![Engine: Rust](https://img.shields.io/badge/Engine-Rust_Kernel_API-DE3A1E?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
-[![UI: React + Tauri](https://img.shields.io/badge/Framework-Tauri_v2_%2B_React_18-61DAFB?style=for-the-badge&logo=react)](https://tauri.app/)
-[![Website: Live Docs](https://img.shields.io/badge/Website-Interactive_Docs-3fa9a0?style=for-the-badge&logo=html5)](docs/index.html)
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary_All_Rights_Reserved-gold?style=for-the-badge)](LICENSE)
+[![Framework: Tauri v2 + React](https://img.shields.io/badge/Framework-Tauri_v2_%2B_React_18-61DAFB?style=for-the-badge&logo=react)](https://tauri.app/)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary_All_Rights_Reserved-red?style=for-the-badge)](LICENSE)
 
-RAMGuard Pro is a high-performance Windows desktop application engineered to safely reclaim RAM, optimize process working sets, and purge cached system standby lists using kernel-level NT APIs.
+RAMGuard Pro is a high-performance Windows desktop application engineered to safely reclaim RAM, optimize process working sets, and purge cached system standby memory using kernel-level NT APIs.
 
 ---
 
-### 🌐 [**View Animated Landing Website (`docs/index.html`)**](docs/index.html)
+### 🌐 [**View Animated Interactive Website**](https://github.com/jojin1709/ramguard-pro/blob/main/docs/index.html)
 
 ---
 
 ### 📦 Download Ready-to-Run Executables (.exe)
 
-| Download | File Type | Description |
-| --- | --- | --- |
-| 💿 [**Download NSIS Setup Installer (.exe)**](releases/RAMGuard-Pro-Setup.exe) | Setup Installer | Guided installer with desktop shortcut and start menu options |
-| ⚡ [**Download Portable Executable (.exe)**](releases/RAMGuard-Pro.exe) | Standalone Executable | Portable single-file executable, no installation required |
+| Package Name | File Type | Download Link | Description |
+| --- | --- | --- | --- |
+| 💿 **RAMGuard Pro Setup** | NSIS Setup Installer | [**Download Setup (.exe)**](releases/RAMGuard-Pro-Setup.exe) | Guided setup installer with desktop shortcut and start menu options |
+| ⚡ **RAMGuard Pro Portable** | Standalone Executable | [**Download Portable (.exe)**](releases/RAMGuard-Pro.exe) | Single-file portable executable — no installation required |
 
 ---
 
@@ -41,10 +41,10 @@ RAMGuard Pro is a high-performance Windows desktop application engineered to saf
 ## Table of Contents
 
 - [What is RAMGuard Pro?](#what-is-ramguard-pro)
-- [Download & Installation](#download--installation)
+- [Download & Setup Guide](#download--setup-guide)
 - [Key Capabilities](#key-capabilities)
 - [Architecture](#architecture)
-- [Safety & Protection Shields](#safety--protection-shields)
+- [Safety & System Shield Protections](#safety--system-shield-protections)
 - [Proprietary License & Ownership](#proprietary-license--ownership)
 - [Developer Credit](#developer-credit)
 
@@ -52,15 +52,15 @@ RAMGuard Pro is a high-performance Windows desktop application engineered to saf
 
 ## What is RAMGuard Pro?
 
-**RAMGuard Pro** is an advanced Windows memory optimization utility developed by **JOJIN JOHN**. Unlike placebo memory cleaner apps that corrupt system cache or force artificial paging, RAMGuard Pro employs standard, verified Windows operating system kernel APIs:
+**RAMGuard Pro** is an advanced Windows memory optimization utility developed by **JOJIN JOHN**. Unlike placebo memory cleaner tools that corrupt system cache or force artificial allocation spikes, RAMGuard Pro employs standard, verified Windows operating system kernel APIs:
 
-1. **Working-Set Trimming (`EmptyWorkingSet`)**: Programmatically signals Windows memory manager to release unallocated or idle memory pages held by running applications.
-2. **Standby Memory Purging (`NtSetSystemInformation`)**: Purges cached system standby memory (`MemoryPurgeStandbyList`) that Windows hoards for file caching.
+1. **Working-Set Trimming (`EmptyWorkingSet`)**: Programmatically signals the Windows memory manager to release unallocated or idle memory pages held by running background applications.
+2. **Standby Memory Purging (`NtSetSystemInformation`)**: Purges cached system standby memory (`MemoryPurgeStandbyList`) that Windows hoards as file cache.
 3. **Smart Process Guard**: Features an immutable protection list (`csrss.exe`, `lsass.exe`, `explorer.exe`, `dwm.exe`, `svchost.exe`, etc.) to guarantee zero system crashes or BSODs.
 
 ---
 
-## Download & Installation
+## Download & Setup Guide
 
 You do not need to compile or install any development tools to use RAMGuard Pro. Pre-built, optimized `.exe` binaries are provided directly in the repository:
 
@@ -113,7 +113,7 @@ RAMGuard Pro separates kernel-level native operations from presentation logic us
 
 ---
 
-## Safety & Protection Shields
+## Safety & System Shield Protections
 
 > [!IMPORTANT]
 > The following core OS shell processes are hard-coded as **System Protected** and can NEVER be terminated or trimmed by RAMGuard Pro:
@@ -135,7 +135,7 @@ This software and all associated source code, binaries, executables, graphics, a
 
 ---
 
-## Developed By
+## Developer Credit
 
 <div align="center">
 
