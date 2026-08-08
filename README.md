@@ -16,6 +16,7 @@
 [![Engine: Rust](https://img.shields.io/badge/Engine-Rust_Kernel_API-DE3A1E?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
 [![Framework: Tauri v2 + React](https://img.shields.io/badge/Framework-Tauri_v2_%2B_React_18-61DAFB?style=for-the-badge&logo=react)](https://tauri.app/)
 [![Website: Live Website](https://img.shields.io/badge/Website-jojin1709.github.io%2Framguard--pro-3fa9a0?style=for-the-badge&logo=googlechrome)](https://jojin1709.github.io/ramguard-pro/)
+[![Product Hunt: Launch](https://img.shields.io/badge/Product_Hunt-RAMGuard_Pro-DA552F?style=for-the-badge&logo=producthunt)](https://www.producthunt.com/products/ramguard-pro?launch=ramguard-pro)
 [![Security Policy](https://img.shields.io/badge/Security-Policy-blue?style=for-the-badge)](SECURITY.md)
 [![Contributing](https://img.shields.io/badge/Guidelines-Feedback-orange?style=for-the-badge)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/Contributor_Covenant-2.1-purple?style=for-the-badge)](CODE_OF_CONDUCT.md)
