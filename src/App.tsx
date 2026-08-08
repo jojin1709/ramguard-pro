@@ -4,6 +4,7 @@ import { listen } from "@tauri-apps/api/event";
 import Gauge from "./components/Gauge";
 import ProcessList from "./components/ProcessList";
 import SettingsPanel from "./components/SettingsPanel";
+import LogoIcon from "./components/LogoIcon";
 import { MemoryStatus, OptimizeResult, ProcessInfo, Settings } from "./types";
 
 type Tab = "dashboard" | "processes" | "settings";
@@ -111,7 +112,7 @@ export default function App() {
       )}
       <aside className="sidebar">
         <div className="brand">
-          <img src="/icon.png" alt="RAMGuard Pro" className="brand-mark-img" />
+          <LogoIcon />
           <div>
             <div className="brand-title">RAMGuard</div>
             <div className="brand-sub">Pro</div>
@@ -138,7 +139,9 @@ export default function App() {
           {optimizing ? "Optimizing…" : "Optimize now"}
         </button>
 
-        <div className="sidebar-credit">Developed by JOJIN JOHN</div>
+        <a href="https://www.linkedin.com/in/jojin-john/" target="_blank" rel="noreferrer" className="sidebar-credit" style={{ textDecoration: "none" }}>
+          Developed by JOJIN JOHN
+        </a>
       </aside>
 
       <main className="content">

@@ -10,7 +10,8 @@
 ### Proprietary Windows Memory Optimizer Engine
 **Developed by JOJIN JOHN**
 
-[![Developer: JOJIN JOHN](https://img.shields.io/badge/Developer-JOJIN_JOHN-gold?style=for-the-badge)](https://github.com/jojin1709)
+[![Developer: JOJIN JOHN](https://img.shields.io/badge/Developer-JOJIN_JOHN-gold?style=for-the-badge)](https://www.linkedin.com/in/jojin-john/)
+[![LinkedIn: JOJIN JOHN](https://img.shields.io/badge/LinkedIn-JOJIN_JOHN-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jojin-john/)
 [![Platform: Windows](https://img.shields.io/badge/Platform-Windows_10%2F11-0078D6?style=for-the-badge&logo=windows)](https://microsoft.com/windows)
 [![Engine: Rust](https://img.shields.io/badge/Engine-Rust_Kernel_API-DE3A1E?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
 [![Framework: Tauri v2 + React](https://img.shields.io/badge/Framework-Tauri_v2_%2B_React_18-61DAFB?style=for-the-badge&logo=react)](https://tauri.app/)
