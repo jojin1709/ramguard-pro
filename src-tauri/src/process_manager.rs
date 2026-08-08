@@ -141,14 +141,19 @@ pub fn list_processes(sys: &mut System) -> Vec<ProcessInfo> {
 pub fn trimmable_pids(sys: &mut System) -> Vec<u32> {
     sys.refresh_all();
     let protected: HashSet<&str> = PROTECTED_PROCESSES.iter().copied().collect();
+    let current_pid = std::process::id();
     sys.processes()
         .iter()
         .filter_map(|(pid, proc_)| {
+            let p_u32 = pid.as_u32();
+            if p_u32 == 0 || p_u32 == 4 || p_u32 == current_pid {
+                return None;
+            }
             let key = normalize(&proc_.name().to_string_lossy());
             if protected.contains(key.as_str()) {
                 None
             } else {
-                Some(pid.as_u32())
+                Some(p_u32)
             }
         })
         .collect()

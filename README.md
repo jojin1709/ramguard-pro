@@ -3,6 +3,8 @@
 
 <div align="center">
 
+<img src="docs/icon.png" width="96" height="96" alt="RAMGuard Pro Logo" />
+
 # 🛡️ RAMGuard Pro
 
 ### Proprietary Windows Memory Optimizer Engine

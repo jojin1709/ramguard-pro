@@ -134,17 +134,27 @@ mod win {
     }
 
     const SYSTEM_MEMORY_LIST_INFORMATION: i32 = 80;
+    const MEMORY_FLUSH_MODIFIED_LIST: u32 = 3;
     const MEMORY_PURGE_STANDBY_LIST: u32 = 4;
 
     pub fn clear_standby_list() -> bool {
-        // Needs SeProfileSingleProcessPrivilege in addition to admin rights.
+        // Needs SeProfileSingleProcessPrivilege and SeIncreaseQuotaPrivilege in addition to admin rights.
         enable_privilege("SeProfileSingleProcessPrivilege");
         enable_privilege("SeIncreaseQuotaPrivilege");
         unsafe {
-            let mut command = MEMORY_PURGE_STANDBY_LIST;
+            // First, flush dirty modified pages to the standby list
+            let mut flush_command = MEMORY_FLUSH_MODIFIED_LIST;
+            let _ = NtSetSystemInformation(
+                SYSTEM_MEMORY_LIST_INFORMATION,
+                &mut flush_command as *mut _ as *mut c_void,
+                size_of::<u32>() as u32,
+            );
+
+            // Then, purge the standby list
+            let mut purge_command = MEMORY_PURGE_STANDBY_LIST;
             let status = NtSetSystemInformation(
                 SYSTEM_MEMORY_LIST_INFORMATION,
-                &mut command as *mut _ as *mut c_void,
+                &mut purge_command as *mut _ as *mut c_void,
                 size_of::<u32>() as u32,
             );
             // NTSTATUS 0 = STATUS_SUCCESS

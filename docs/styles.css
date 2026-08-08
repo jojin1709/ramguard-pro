@@ -204,11 +204,11 @@ body {
 }
 
 .brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
-  background: conic-gradient(from 220deg, var(--gold), transparent 65%, var(--gold-soft));
-  box-shadow: 0 0 0 1px var(--border) inset, 0 0 12px rgba(201, 162, 39, 0.3);
+  object-fit: contain;
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.3);
 }
 
 .brand-name {
