@@ -71,6 +71,14 @@ button {
   box-shadow: 0 0 0 1px var(--border) inset;
 }
 
+.brand-mark-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 0 10px rgba(227, 194, 95, 0.25);
+}
+
 .brand-title {
   font-family: var(--font-display);
   font-weight: 600;

@@ -111,7 +111,7 @@ export default function App() {
       )}
       <aside className="sidebar">
         <div className="brand">
-          <span className="brand-mark" />
+          <img src="/icon.png" alt="RAMGuard Pro" className="brand-mark-img" />
           <div>
             <div className="brand-title">RAMGuard</div>
             <div className="brand-sub">Pro</div>
