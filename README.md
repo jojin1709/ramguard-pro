@@ -44,6 +44,18 @@ RAMGuard Pro is a high-performance Windows desktop application engineered to saf
 
 ---
 
+> [!WARNING]
+> ### 🛡️ Windows Defender & SmartScreen Notice (False Positives)
+> Because RAMGuard Pro uses low-level Windows memory APIs (`NtSetSystemInformation` & `AdjustTokenPrivileges`) to purge system cache and is a newly compiled release without an expensive EV Code-Signing Certificate ($400/yr), Windows Defender or SmartScreen may show a **False Positive warning** during download:
+> 
+> - **Browser Download Warning (Chrome/Edge)**: Click `...` next to the download file ➔ **Keep** ➔ **Show more** ➔ **Keep anyway**.
+> - **Windows SmartScreen Prompt**: Click **More info** ➔ **Run anyway**.
+> - **Windows Security / Antivirus**: Open *Windows Security* ➔ *Protection History* ➔ Select the item ➔ Choose **Actions ➔ Allow on device**.
+> 
+> *RAMGuard Pro contains zero malware, adware, or telemetry. It is 100% clean software.*
+
+---
+
 ## Table of Contents
 
 - [What is RAMGuard Pro?](#what-is-ramguard-pro)
