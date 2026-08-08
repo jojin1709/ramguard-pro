@@ -30,6 +30,13 @@ RAMGuard Pro is a high-performance Windows desktop application engineered to saf
 
 ---
 
+### 🎥 Live Video Demonstration
+
+> Watch **RAMGuard Pro** execute real-time kernel standby memory purging and working-set optimization on Windows 11:  
+> 📺 **[Watch Full Video Demo on Website](https://jojin1709.github.io/ramguard-pro/#demo-video)** | 🎬 **[Download Direct Video Demo (MP4)](docs/demo.mp4)**
+
+---
+
 ### 📦 Download Ready-to-Run Executables (.exe)
 
 | Package Name | File Type | Download Link | Description |
