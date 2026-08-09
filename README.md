@@ -105,9 +105,12 @@ You do not need to compile or install any development tools to use RAMGuard Pro.
 
 ## Key Capabilities
 
+- **⚡ Non-Blocking Async Engine**: Optimization executes asynchronously on dedicated kernel thread pools so the application UI window remains 100% smooth and responsive without "(Not Responding)" freezes.
+- **🛡️ App Whitelist**: Exclude resource-intensive software (VS Code, Visual Studio, IntelliJ, Chrome, games) from memory trimming to eliminate lag spikes when switching back to them. Includes quick presets and custom process input.
+- **📊 Cumulative RAM Cleared Counter**: Persisted counter on the Dashboard displaying lifetime RAM freed and total optimization passes.
 - **⚡ Instant Memory Reclamation**: Reduces overall system RAM load within seconds with a single click.
 - **🛡️ Real-Time Admin Mode Detection**: Auto-detects token elevation status and displays live indicator badges (**🛡️ Administrator Mode** vs **⚠️ User Mode**).
-- **🔍 Interactive Process Manager & Search**: Search processes by name or PID, with instant filtering for **Suggested Cleanup**, **System Protected**, and **Caution / Danger** apps.
+- **🔍 Interactive Process Manager & Search**: Search processes by name or PID, with instant filtering for **Suggested Cleanup**, **🛡️ Whitelisted**, **System Protected**, and **Caution / Danger** apps.
 - **🤖 Quiet Background Watcher**: Auto-optimizes RAM in the background when memory consumption crosses user-configured thresholds (e.g. 85%).
 - **📌 System Tray Quick Access**: Minimizes to system tray. Left-clicking or double-clicking the tray icon restores the UI instantly; right-clicking provides instant trigger & exit options.
 - **🖼️ Custom NSIS Setup Installer**: Bundled setup installer with custom splash graphics, desktop shortcuts, and Start menu shortcuts.

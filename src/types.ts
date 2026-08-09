@@ -13,6 +13,7 @@ export interface ProcessInfo {
   is_protected: boolean;
   is_dangerous: boolean;
   is_suggested_cleanup: boolean;
+  is_whitelisted: boolean;
 }
 
 export interface OptimizeResult {
@@ -29,4 +30,8 @@ export interface Settings {
   clear_standby_on_optimize: boolean;
   launch_on_startup: boolean;
   minimize_to_tray: boolean;
+  whitelist: string[];
+  total_freed_mb: number;
+  total_optimizations: number;
 }
+

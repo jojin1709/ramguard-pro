@@ -577,3 +577,150 @@ input[type="range"] {
   border-color: var(--gold-soft);
 }
 
+/* ── Highlight Stat Card ─────────────────────────────── */
+.stat-card--highlight {
+  border-color: rgba(201, 162, 39, 0.4);
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.08), var(--panel));
+}
+
+.stat-card--highlight .stat-value {
+  color: var(--gold-soft);
+}
+
+/* ── Whitelist Styles ────────────────────────────────── */
+.badge--whitelisted {
+  background: rgba(63, 169, 160, 0.15);
+  color: var(--cool);
+  border: 1px solid rgba(63, 169, 160, 0.35);
+}
+
+.process-row--whitelisted {
+  background: rgba(63, 169, 160, 0.03);
+}
+
+.btn-ghost--whitelisted {
+  color: var(--cool) !important;
+  border-color: rgba(63, 169, 160, 0.4) !important;
+  background: rgba(63, 169, 160, 0.08) !important;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.whitelist-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.whitelist-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.whitelist-input {
+  flex: 1;
+}
+
+.preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.preset-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+
+.chip {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  transition: all 0.15s ease;
+}
+
+.chip:hover:not(:disabled) {
+  border-color: var(--gold-soft);
+  color: var(--gold-soft);
+}
+
+.chip--added {
+  opacity: 0.5;
+  cursor: default;
+  border-color: var(--cool);
+  color: var(--cool);
+}
+
+.whitelist-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: 52px;
+  align-items: center;
+}
+
+.whitelist-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--panel-raised);
+  border: 1px solid rgba(63, 169, 160, 0.35);
+  color: var(--cool);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.tag-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 11px;
+  padding: 0 2px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.tag-remove:hover {
+  color: var(--hot);
+  background: rgba(217, 80, 63, 0.15);
+}
+
+/* ── Statistics Summary Row ──────────────────────────── */
+.stats-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.stat-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+}
+
+.stat-highlight {
+  color: var(--gold-soft);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+

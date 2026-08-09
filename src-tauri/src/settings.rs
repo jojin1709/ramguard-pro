@@ -1,9 +1,10 @@
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
+#[serde(default)]
 pub struct Settings {
     /// Auto-optimize once RAM usage crosses this percent (0 disables auto mode).
     pub auto_trigger_percent: u32,
@@ -13,6 +14,12 @@ pub struct Settings {
     pub clear_standby_on_optimize: bool,
     pub launch_on_startup: bool,
     pub minimize_to_tray: bool,
+    /// List of process executable names to exclude from memory trimming (e.g. "code.exe").
+    pub whitelist: Vec<String>,
+    /// Cumulative total RAM freed in MB.
+    pub total_freed_mb: u64,
+    /// Total number of optimization passes performed.
+    pub total_optimizations: u64,
 }
 
 impl Default for Settings {
@@ -23,11 +30,18 @@ impl Default for Settings {
             clear_standby_on_optimize: true,
             launch_on_startup: false,
             minimize_to_tray: true,
+            whitelist: vec![
+                "code.exe".to_string(),
+                "devenv.exe".to_string(),
+                "idea64.exe".to_string(),
+            ],
+            total_freed_mb: 0,
+            total_optimizations: 0,
         }
     }
 }
 
-pub struct SettingsState(pub Mutex<Settings>);
+pub struct SettingsState(pub Arc<Mutex<Settings>>);
 
 fn settings_path(app_data_dir: &PathBuf) -> PathBuf {
     app_data_dir.join("settings.json")

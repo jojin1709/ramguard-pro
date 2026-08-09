@@ -18,6 +18,7 @@ pub struct ProcessInfo {
     pub is_protected: bool,
     pub is_dangerous: bool,
     pub is_suggested_cleanup: bool,
+    pub is_whitelisted: bool,
 }
 
 /// Core OS / shell processes that must never be killed or trimmed by this tool,
@@ -114,8 +115,9 @@ fn normalize(name: &str) -> String {
     name.to_lowercase()
 }
 
-pub fn list_processes(sys: &mut System) -> Vec<ProcessInfo> {
+pub fn list_processes(sys: &mut System, whitelist: &[String]) -> Vec<ProcessInfo> {
     sys.refresh_all();
+    let normalized_whitelist: HashSet<String> = whitelist.iter().map(|s| normalize(s)).collect();
     let mut out: Vec<ProcessInfo> = sys
         .processes()
         .iter()
@@ -130,6 +132,7 @@ pub fn list_processes(sys: &mut System) -> Vec<ProcessInfo> {
                 is_protected: PROTECTED_PROCESSES.contains(&key.as_str()),
                 is_dangerous: DANGEROUS_PROCESSES.contains(&key.as_str()),
                 is_suggested_cleanup: SUGGESTED_CLEANUP.contains(&key.as_str()),
+                is_whitelisted: normalized_whitelist.contains(&key),
             }
         })
         .collect();
@@ -138,9 +141,10 @@ pub fn list_processes(sys: &mut System) -> Vec<ProcessInfo> {
     out
 }
 
-pub fn trimmable_pids(sys: &mut System) -> Vec<u32> {
+pub fn trimmable_pids(sys: &mut System, whitelist: &[String]) -> Vec<u32> {
     sys.refresh_all();
     let protected: HashSet<&str> = PROTECTED_PROCESSES.iter().copied().collect();
+    let normalized_whitelist: HashSet<String> = whitelist.iter().map(|s| normalize(s)).collect();
     let current_pid = std::process::id();
     sys.processes()
         .iter()
@@ -150,7 +154,7 @@ pub fn trimmable_pids(sys: &mut System) -> Vec<u32> {
                 return None;
             }
             let key = normalize(&proc_.name().to_string_lossy());
-            if protected.contains(key.as_str()) {
+            if protected.contains(key.as_str()) || normalized_whitelist.contains(&key) {
                 None
             } else {
                 Some(p_u32)

@@ -7,7 +7,7 @@ mod memory;
 mod process_manager;
 mod settings;
 
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use sysinfo::System;
 use tauri::menu::{Menu, MenuItem};
@@ -39,11 +39,11 @@ fn main() {
             tauri_plugin_autostart::MacosLauncher::LaunchAgent,
             None,
         ))
-        .manage(SysState(Mutex::new(System::new_all())))
+        .manage(SysState(Arc::new(Mutex::new(System::new_all()))))
         .setup(|app| {
             let app_data_dir = app.path().app_data_dir()?;
             let loaded = settings::load(&app_data_dir);
-            app.manage(SettingsState(Mutex::new(loaded)));
+            app.manage(SettingsState(Arc::new(Mutex::new(loaded))));
 
             // --- System tray ---
             let show_item = MenuItem::with_id(app, "show", "Show RAMGuard Pro", true, None::<&str>)?;
@@ -77,10 +77,19 @@ fn main() {
                         }
                     }
                     "optimize" => {
-                        let sys_state = app.state::<SysState>();
-                        let settings_state = app.state::<SettingsState>();
-                        let result = commands::optimize_now(sys_state, settings_state);
-                        let _ = app.emit("optimize-complete", result);
+                        let app_handle = app.clone();
+                        let app_handle_emit = app.clone();
+                        let sys_mutex = app.state::<SysState>().0.clone();
+                        let settings_mutex = app.state::<SettingsState>().0.clone();
+                        tauri::async_runtime::spawn(async move {
+                            let result = tauri::async_runtime::spawn_blocking(move || {
+                                commands::execute_optimize(&app_handle, sys_mutex, settings_mutex)
+                            })
+                            .await;
+                            if let Ok(res) = result {
+                                let _ = app_handle_emit.emit("optimize-complete", res);
+                            }
+                        });
                     }
                     "quit" => {
                         app.exit(0);
@@ -105,10 +114,19 @@ fn main() {
                 }
                 let status = memory::get_memory_status();
                 if status.percent_used >= trigger_percent {
-                    let sys_state = handle.state::<SysState>();
-                    let settings_state = handle.state::<SettingsState>();
-                    let result = commands::optimize_now(sys_state, settings_state);
-                    let _ = handle.emit("optimize-complete", result);
+                    let app_handle = handle.clone();
+                    let app_handle_emit = handle.clone();
+                    let sys_mutex = handle.state::<SysState>().0.clone();
+                    let settings_mutex = handle.state::<SettingsState>().0.clone();
+                    tauri::async_runtime::spawn(async move {
+                        let result = tauri::async_runtime::spawn_blocking(move || {
+                            commands::execute_optimize(&app_handle, sys_mutex, settings_mutex)
+                        })
+                        .await;
+                        if let Ok(res) = result {
+                            let _ = app_handle_emit.emit("optimize-complete", res);
+                        }
+                    });
                 }
             });
 
@@ -132,6 +150,7 @@ fn main() {
             commands::kill_process,
             commands::get_settings,
             commands::save_settings,
+            commands::reset_stats,
         ])
         .run(tauri::generate_context!())
         .expect("error while running RAMGuard Pro");

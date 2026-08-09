@@ -4,11 +4,12 @@ import { ProcessInfo } from "../types";
 interface Props {
   processes: ProcessInfo[];
   onKill: (pid: number, name: string) => void;
+  onToggleWhitelist?: (name: string) => void;
 }
 
-type FilterCategory = "all" | "suggested" | "system" | "danger";
+type FilterCategory = "all" | "suggested" | "system" | "danger" | "whitelisted";
 
-export default function ProcessList({ processes, onKill }: Props) {
+export default function ProcessList({ processes, onKill, onToggleWhitelist }: Props) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<FilterCategory>("all");
   const [showAll, setShowAll] = useState(false);
@@ -23,6 +24,7 @@ export default function ProcessList({ processes, onKill }: Props) {
     if (category === "suggested") return p.is_suggested_cleanup;
     if (category === "system") return p.is_protected;
     if (category === "danger") return p.is_dangerous;
+    if (category === "whitelisted") return p.is_whitelisted;
     return true;
   });
 
@@ -62,6 +64,12 @@ export default function ProcessList({ processes, onKill }: Props) {
           Suggested ({processes.filter((p) => p.is_suggested_cleanup).length})
         </button>
         <button
+          className={category === "whitelisted" ? "filter-btn filter-btn--active" : "filter-btn"}
+          onClick={() => setCategory("whitelisted")}
+        >
+          🛡️ Whitelisted ({processes.filter((p) => p.is_whitelisted).length})
+        </button>
+        <button
           className={category === "system" ? "filter-btn filter-btn--active" : "filter-btn"}
           onClick={() => setCategory("system")}
         >
@@ -86,24 +94,36 @@ export default function ProcessList({ processes, onKill }: Props) {
           <div className="process-empty">No matching processes found</div>
         ) : (
           displayed.map((p) => (
-            <div className={`process-row ${p.is_dangerous ? "process-row--danger" : ""}`} key={p.pid}>
+            <div className={`process-row ${p.is_dangerous ? "process-row--danger" : ""} ${p.is_whitelisted ? "process-row--whitelisted" : ""}`} key={p.pid}>
               <span className="process-name">
                 <span className="pid-badge">PID {p.pid}</span>
                 <span className="proc-title">{p.name}</span>
+                {p.is_whitelisted && <span className="badge badge--whitelisted">🛡️ whitelisted</span>}
                 {p.is_suggested_cleanup && <span className="badge">suggested</span>}
                 {p.is_protected && <span className="badge badge--protected">system</span>}
                 {p.is_dangerous && <span className="badge badge--danger">⚠ danger</span>}
               </span>
               <span className="mono">{p.memory_mb.toLocaleString()} MB</span>
               <span className="mono">{p.cpu_usage.toFixed(1)}%</span>
-              <span>
+              <span className="action-buttons">
                 {!p.is_protected && (
-                  <button
-                    className={p.is_dangerous ? "btn-ghost btn-ghost--danger" : "btn-ghost"}
-                    onClick={() => onKill(p.pid, p.name)}
-                  >
-                    End Process
-                  </button>
+                  <>
+                    {onToggleWhitelist && (
+                      <button
+                        className={`btn-ghost ${p.is_whitelisted ? "btn-ghost--whitelisted" : ""}`}
+                        onClick={() => onToggleWhitelist(p.name)}
+                        title={p.is_whitelisted ? "Remove from RAM optimization whitelist" : "Whitelist app (prevent lag when switching back)"}
+                      >
+                        {p.is_whitelisted ? "🛡️ Whitelisted" : "+ Whitelist"}
+                      </button>
+                    )}
+                    <button
+                      className={p.is_dangerous ? "btn-ghost btn-ghost--danger" : "btn-ghost"}
+                      onClick={() => onKill(p.pid, p.name)}
+                    >
+                      End Process
+                    </button>
+                  </>
                 )}
               </span>
             </div>
@@ -121,4 +141,5 @@ export default function ProcessList({ processes, onKill }: Props) {
     </div>
   );
 }
+
 

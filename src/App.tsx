@@ -66,6 +66,7 @@ export default function App() {
         setIsAdmin(result.is_admin);
       }
       await Promise.all([refreshMemory(), refreshProcesses()]);
+      invoke<Settings>("get_settings").then(setSettings);
       const standbyMsg = result.standby_list_cleared ? " · Standby list purged" : "";
       showToast(`Trimmed ${result.processes_trimmed} processes${standbyMsg} · freed ~${result.freed_mb} MB`, true);
     } catch (e) {
@@ -93,13 +94,48 @@ export default function App() {
     }
   };
 
+  const handleToggleWhitelist = async (name: string) => {
+    if (!settings) return;
+    const lower = name.toLowerCase();
+    const exists = settings.whitelist.some((item) => item.toLowerCase() === lower);
+    const updatedWhitelist = exists
+      ? settings.whitelist.filter((item) => item.toLowerCase() !== lower)
+      : [...settings.whitelist, lower];
+
+    const updatedSettings = { ...settings, whitelist: updatedWhitelist };
+    setSettings(updatedSettings);
+    try {
+      await invoke("save_settings", { newSettings: updatedSettings });
+      await refreshProcesses();
+      showToast(
+        exists ? `Removed ${name} from whitelist` : `Added ${name} to whitelist 🛡️`,
+        true
+      );
+    } catch (e) {
+      showToast(`Failed to update whitelist: ${e}`, false);
+    }
+  };
+
   const handleSaveSettings = async () => {
     if (!settings) return;
     try {
       await invoke("save_settings", { newSettings: settings });
+      await refreshProcesses();
       showToast("Settings saved successfully", true);
     } catch (e) {
       showToast(`Failed to save settings: ${e}`, false);
+    }
+  };
+
+  const handleResetStats = async () => {
+    if (!window.confirm("Reset cumulative RAM cleared statistics?")) return;
+    try {
+      await invoke("reset_stats");
+      const fresh = await invoke<Settings>("get_settings");
+      setSettings(fresh);
+      showToast("Statistics reset successfully", true);
+    } catch (e) {
+      showToast(`Failed to reset stats: ${e}`, false);
     }
   };
 
@@ -162,6 +198,16 @@ export default function App() {
                   <span className="stat-label">Total</span>
                   <span className="stat-value">{(mem.total_mb / 1024).toFixed(1)} GB</span>
                 </div>
+                <div className="stat-card stat-card--highlight">
+                  <span className="stat-label">Total RAM Cleared</span>
+                  <span className="stat-value">
+                    {settings
+                      ? settings.total_freed_mb >= 1024
+                        ? `${(settings.total_freed_mb / 1024).toFixed(1)} GB`
+                        : `${settings.total_freed_mb} MB`
+                      : "0 MB"}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -173,16 +219,32 @@ export default function App() {
               </div>
             )}
 
-            <ProcessList processes={processes} onKill={(pid, name) => handleKill(pid, name)} />
+            <ProcessList
+              processes={processes}
+              onKill={(pid, name) => handleKill(pid, name)}
+              onToggleWhitelist={handleToggleWhitelist}
+            />
           </>
         )}
 
-        {tab === "processes" && <ProcessList processes={processes} onKill={(pid, name) => handleKill(pid, name)} />}
+        {tab === "processes" && (
+          <ProcessList
+            processes={processes}
+            onKill={(pid, name) => handleKill(pid, name)}
+            onToggleWhitelist={handleToggleWhitelist}
+          />
+        )}
 
         {tab === "settings" && settings && (
-          <SettingsPanel settings={settings} onChange={setSettings} onSave={handleSaveSettings} />
+          <SettingsPanel
+            settings={settings}
+            onChange={setSettings}
+            onSave={handleSaveSettings}
+            onResetStats={handleResetStats}
+          />
         )}
       </main>
     </div>
   );
 }
+
