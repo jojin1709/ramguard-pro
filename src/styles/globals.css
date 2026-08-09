@@ -160,6 +160,7 @@ nav {
   border-radius: 6px;
   padding: 4px 10px;
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .btn-ghost:hover {
@@ -299,7 +300,7 @@ nav {
 
 .process-row {
   display: grid;
-  grid-template-columns: 1fr 100px 70px 60px;
+  grid-template-columns: 1fr 85px 55px 220px;
   align-items: center;
   padding: 9px 4px;
   border-bottom: 1px solid var(--border);
@@ -315,6 +316,10 @@ nav {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.process-row--head > span:last-child {
+  text-align: right;
 }
 
 .process-name {
